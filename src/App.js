@@ -12,10 +12,6 @@ import help from './help.svg';
 export default function App() {
   const videos = [video1, video2]
   const [videoIndex, setVideoindex] = useState(0)
-  
-  useEffect(() =>{
-    window.scrollTo(0,document.body.scrollHeight);
-  }, []);
 
   function nextVideo() {
     if (videoIndex + 1 < videos.length) {
@@ -44,7 +40,7 @@ export default function App() {
         </video>
       </div>
       <div className="controls">
-        <div className="btn">
+        <div className={"btn" + (videoIndex >= 1 ? '' : ' hide')}>
           <img className="icn" src={left} onClick={prevVideo} />
         </div>
         <div className="btn">
@@ -52,7 +48,7 @@ export default function App() {
             <img className="icn " src={help} />
           </a>
         </div>
-        <div className="btn">
+        <div className={"btn" + (videoIndex < videos.length - 1 ? '' : ' hide')}>
           <img className="icn" src={right} onClick={nextVideo} />
         </div>
       </div>
