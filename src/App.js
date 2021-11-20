@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import './App.css';
 import video1 from './story1.mp4';
@@ -11,9 +11,12 @@ import help from './help.svg';
 
 export default function App() {
   const videos = [video1, video2]
-  
   const [videoIndex, setVideoindex] = useState(0)
   
+  useEffect(() =>{
+    window.scrollTo(0, 1);
+  }, []);
+
   function nextVideo() {
     if (videoIndex + 1 < videos.length) {
       setVideoindex(prevIndex => prevIndex + 1);
