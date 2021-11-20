@@ -1,6 +1,6 @@
 import pandas as pd
 from reports.store_outlier import get_store_outlier_for_yesterday
-from generate_video import generate_video
+from generate_video import generate_line_story
 
 YESTERDAY = "2018-09-17"
 
@@ -37,10 +37,20 @@ def main():
     yesterday_outliers = get_store_outlier_for_yesterday(df_sales, YESTERDAY)
     print(f"Found {len(yesterday_outliers)} store outliers")
     # do priority
+    
 
     # generate video
-    print("Start generation Videos")
-    generate_video(yesterday_outliers)
+    print("Generating Videos...")
+    i = 1
+    for store, store_data in yesterday_outliers.items():
+        chart_type, data, text1, text2 = store_data['chart_type'], store_data['data'], store_data['text1'], store_data['text2']
+    
+        x, y = data.T
+        vid = generate_line_story('intro sentence', text1, text2, x, y)
+
+        vid.write_videofile(f'videos/story{i}.mp4', fps=10)
+        i += 1
+    print("Videos generated.")
 
     # upload video
     print("Start Uploading Videos")
