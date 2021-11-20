@@ -38,6 +38,8 @@ def get_growth_cities(df_sales, yesterday):
         temp = temp[['date', 'revenue']]
         temp = temp.loc[temp.date <= pd.to_datetime(
             yesterday, format='%Y-%m-%d')]
+        temp = temp.loc[temp.date >= (pd.to_datetime(
+            yesterday, format='%Y-%m-%d') - pd.DateOffset(years=1))]
         temp['date'] = temp['date'].dt.strftime('%Y-%m')
         res[growth_cities[i]]["data"] = temp.to_numpy()
         res[growth_cities[i]
