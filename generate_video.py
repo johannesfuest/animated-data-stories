@@ -60,7 +60,7 @@ def make_frame_bar(t):
     fig.autofmt_xdate()
     ax.set_ylabel(y_label)
 
-    ax.bar(x, np.minimum(y * t * 4 / WAIT_UNTIL_TEXT, y), color=plot_color)
+    ax.bar(x, np.minimum(y * t * 4 / WAIT_UNTIL_TEXT, y), color=plot_color, width=5)
     ax.set_ylim(0, max(y) * 1.1)
     
     return mplfig_to_npimage(fig)
