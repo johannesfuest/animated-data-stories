@@ -166,12 +166,15 @@ def plot_video(txt1, txt2):
     return video, audio, total_duration
 
 
-def generate_line_story(plot_text1, plot_text2, intro_text=''):
+def generate_line_story(plot_text1, plot_text2, intro_text='', _y_label='revenue'):
     """
     Creation of entire line plot story.
 
     Creation of line plot story with 2 seperate videos (intro & data observation).
     """
+    global y_label
+    y_label = _y_label
+
     videos, audios, duration = [], [], 0
     if intro_text:
         v1, a1, d1 = intro_video(intro_text)

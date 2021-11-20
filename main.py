@@ -53,7 +53,6 @@ def main():
     print(f"Found {len(growth_cities)} growth cities")
 
     # do priority
-
     data_stores = {}
     data_stores.update(yesterday_outliers)
     data_stores.update(growth_cities)
@@ -61,18 +60,18 @@ def main():
     # generate video
     print("Generating Videos...")
     i = 1
+    intro = 'Good morning Michael, here are your Daily Insights.'
     for item, item_data in data_stores.items():
-        chart_type, data, text1, text2, _y_label = item_data['chart_type'], item_data[
-            'data'], item_data['text1'], item_data['text2'], item_data['y_label']
+        chart_type, data, text1, text2, _y_label = item_data['chart_type'], item_data['data'], item_data['text1'], item_data['text2'], item_data['y_label']
 
         x, y = data.T
-        vid = generate_line_story(
-            'intro sentence', text1, text2, x, y, _y_label)
+        vid = generate_line_story(text1, text2, x, y, intro_text=intro, _y_label=_y_label)
 
         if not os.path.exists('videos'):
             os.makedirs('videos')
         vid.write_videofile(f'videos/story{i}.mp4', fps=10)
         i += 1
+        intro = False
     print("Videos generated.")
 
     # upload video
