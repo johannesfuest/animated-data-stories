@@ -43,10 +43,10 @@ def make_frame(t):
     """
     ax.clear()
     fig.autofmt_xdate()
-    ax.set_ylabel(y_label)
 
-    ax.plot_date(x, np.minimum(y * t * 4 / WAIT_UNTIL_TEXT, y), linestyle='solid', linewidth=5, marker='', color=plot_color)
+    ax.plot_date(x, np.minimum(y * t * 4 / WAIT_UNTIL_TEXT, y), linestyle='solid', linewidth=5, marker='', color=plot_color, label=y_label)
     ax.set_ylim(0, max(y) * 1.1)
+    ax.legend(loc='upper left')
     
     return mplfig_to_npimage(fig)
 
@@ -156,7 +156,7 @@ def plot_video(txt1, txt2, plot_type=0):
     global WAIT_UNTIL_TEXT
     WAIT_UNTIL_TEXT = audio1.duration
 
-    txt_clip1 = TextClip(textwrap.fill(txt1, 25), font=FONT, color='white', fontsize=32, align='west')
+    txt_clip1 = TextClip(textwrap.fill(txt1, 25), font=FONT, color='white', fontsize=30, align='west')
     txt_clip1 = txt_clip1.set_position(move_text)
 
     audio2 = get_audio(txt2, 'txt2')
@@ -164,7 +164,7 @@ def plot_video(txt1, txt2, plot_type=0):
     global WAIT_UNTIL_TEXT2
     WAIT_UNTIL_TEXT2 = audio2.duration
 
-    txt_clip2 = TextClip(textwrap.fill(txt2, 25), font=FONT, color='white', fontsize=32, align='west')
+    txt_clip2 = TextClip(textwrap.fill(txt2, 25), font=FONT, color='white', fontsize=30, align='west')
     txt_clip2 = txt_clip2.set_position(move_text)
 
     total_duration = audio1.duration + AUDIO_BUFFER + audio2.duration

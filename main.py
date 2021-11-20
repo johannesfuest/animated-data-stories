@@ -60,7 +60,7 @@ def main():
     # generate video
     print("Generating Videos...")
     i = 1
-    intro = 'Good morning Michael, here are your Daily Insights.'
+    intro = 'Hello Micheal, here is your byte-sized morning briefing.'
     videos = []
     for item, item_data in data_stores.items():
         plot_type, data, text1, text2, _y_label = item_data['chart_type'], item_data[
