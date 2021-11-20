@@ -3,6 +3,7 @@ from moviepy.video.io.bindings import mplfig_to_npimage
 
 import numpy as np
 import matplotlib.pyplot as plt
+import textwrap
 from gtts import gTTS
 from pandas import Timestamp
 
@@ -88,7 +89,7 @@ def plot_video(txt1, txt2):
     global WAIT_UNTIL_TEXT
     WAIT_UNTIL_TEXT = audio1.duration
 
-    txt_clip1 = TextClip(txt1, font=FONT, color='white', fontsize=24, align='west')
+    txt_clip1 = TextClip(textwrap.fill(txt1, 30), font=FONT, color='white', fontsize=24, align='west')
     txt_clip1 = txt_clip1.set_position(move_text)
 
     audio2 = get_audio(txt2, 'txt2')
@@ -96,7 +97,7 @@ def plot_video(txt1, txt2):
     global WAIT_UNTIL_TEXT2
     WAIT_UNTIL_TEXT2 = audio2.duration
 
-    txt_clip2 = TextClip(txt2, font=FONT, color='white', fontsize=24, align='west')
+    txt_clip2 = TextClip(textwrap.fill(txt2, 30), font=FONT, color='white', fontsize=24, align='west')
     txt_clip2 = txt_clip2.set_position(move_text)
 
     total_duration = audio1.duration + AUDIO_BUFFER + audio2.duration
