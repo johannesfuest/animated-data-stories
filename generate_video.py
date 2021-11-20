@@ -50,6 +50,20 @@ def make_frame(t):
     
     return mplfig_to_npimage(fig)
 
+def make_frame_bar(t):
+    """
+    New plot for each frame.
+
+    Make updated version of the plot for each frame.
+    """
+    ax.clear()
+    fig.autofmt_xdate()
+    ax.set_ylabel(y_label)
+
+    ax.bar(x, np.minimum(y * t * 4 / WAIT_UNTIL_TEXT, y), color=plot_color)
+    ax.set_ylim(0, max(y) * 1.1)
+    
+    return mplfig_to_npimage(fig)
 
 def move_headline(t):
     """
@@ -128,7 +142,7 @@ def intro_video(txt):
     return video, audio, total_duration
 
 
-def plot_video(txt1, txt2):
+def plot_video(txt1, txt2, plot_type=0):
     """
     Plot video generation.
 
@@ -155,7 +169,7 @@ def plot_video(txt1, txt2):
 
     total_duration = audio1.duration + AUDIO_BUFFER + audio2.duration
 
-    plot_clip = VideoClip(make_frame, duration=total_duration).set_position(move_plot)
+    plot_clip = VideoClip(make_frame if plot_type == 0 else make_frame_bar, duration=total_duration).set_position(move_plot)
 
     background = ImageClip('bg.png', duration=total_duration).resize((VIDEO_WIDTH, VIDEO_HEIGHT//5))
     background = background.set_position((0, VIDEO_HEIGHT - background.h))
@@ -166,7 +180,7 @@ def plot_video(txt1, txt2):
     return video, audio, total_duration
 
 
-def generate_line_story(plot_text1, plot_text2, x_data, y_data, intro_text='', _y_label='revenue'):
+def generate_line_story(plot_text1, plot_text2, x_data, y_data, intro_text='', _y_label='revenue', plot_type=0):
     """
     Creation of entire line plot story.
 
@@ -186,7 +200,7 @@ def generate_line_story(plot_text1, plot_text2, x_data, y_data, intro_text='', _
         audios.append(a1)
         duration += d1
 
-    v2, a2, d2 = plot_video(plot_text1, plot_text2)
+    v2, a2, d2 = plot_video(plot_text1, plot_text2, plot_type)
     if intro_text:
         v2 = v2.set_start(d1)
         a2 = a2.set_start(d1)

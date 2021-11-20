@@ -62,10 +62,10 @@ def main():
     i = 1
     intro = 'Good morning Michael, here are your Daily Insights.'
     for item, item_data in data_stores.items():
-        chart_type, data, text1, text2, _y_label = item_data['chart_type'], item_data['data'], item_data['text1'], item_data['text2'], item_data['y_label']
+        plot_type, data, text1, text2, _y_label = item_data['chart_type'], item_data['data'], item_data['text1'], item_data['text2'], item_data['y_label']
 
         x, y = data.T
-        vid = generate_line_story(text1, text2, x, y, intro_text=intro, _y_label=_y_label)
+        vid = generate_line_story(text1, text2, x, y, intro_text=intro, _y_label=_y_label, plot_type=plot_type)
 
         if not os.path.exists('videos'):
             os.makedirs('videos')
