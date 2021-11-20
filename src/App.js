@@ -14,7 +14,7 @@ export default function App() {
   const [videoIndex, setVideoindex] = useState(0)
   
   useEffect(() =>{
-    window.scrollTo(0, 1);
+    window.scrollTo(0,document.body.scrollHeight);
   }, []);
 
   function nextVideo() {
