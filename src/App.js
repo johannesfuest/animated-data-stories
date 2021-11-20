@@ -1,5 +1,5 @@
 import './App.css';
-import video1 from './story.mp4';
+import video1 from './story1.mp4';
 import avatar from './avatar.svg';
 
 export default function App() {
