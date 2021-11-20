@@ -37,9 +37,9 @@ sns.despine(right=True, top=True)
 
 def make_frame(t):
     """
-    New plot for each frame
+    New plot for each frame.
 
-    Make updated version of the plot for each frame
+    Make updated version of the plot for each frame.
     """
     ax.clear()
     fig.autofmt_xdate()
@@ -53,7 +53,7 @@ def make_frame(t):
 
 def move_headline(t):
     """
-    Fly-in of headline
+    Fly-in of headline.
     """
     if 0 <= t < 2:
         return (linear_in(t, PADDING_LEFT), HEADLINE_Y)
@@ -62,7 +62,7 @@ def move_headline(t):
 
 def move_text(t):
     """
-    Fly-in of data observation
+    Fly-in of data observation.
     """
     if 0 <= t < 2:
         return (linear_in(t, PADDING_LEFT), TEXT_Y)
@@ -73,7 +73,7 @@ def move_text(t):
 
 def move_text2(t):
     """
-    Fly-in of observation explanation
+    Fly-in of observation explanation.
     """
     if 0 <= t < 2:
         return (linear_in(t, PADDING_LEFT), TEXT_Y)
@@ -81,6 +81,9 @@ def move_text2(t):
         return (PADDING_LEFT, TEXT_Y)
 
 def move_plot(t):
+    """
+    Fly-in of plot.
+    """
     if 0 <= t < 2:
         return (linear_in(t, PADDING_LEFT_PLOT), PLOT_Y)
     else:
@@ -94,6 +97,11 @@ def linear_out(t, padding, wait):
 
 
 def get_audio(txt, filename):
+    """
+    Text-to-Speech generation.
+
+    Creation of AudioFileClip using google Text-to-Speech.
+    """
     tts = gTTS(txt)
     tts.save(f'{filename}.mp3')
     audio = AudioFileClip(f'{filename}.mp3')
@@ -102,6 +110,11 @@ def get_audio(txt, filename):
 
 
 def intro_video(txt):
+    """
+    Intro video generation.
+
+    Creation of intro video with intro text, audio, and background.
+    """
     txt_clip = TextClip(textwrap.fill(txt, 22), font=FONT, color='white', fontsize=34, align='west')
     txt_clip = txt_clip.set_position(move_headline)
     audio = get_audio(txt, 'intro')
@@ -116,6 +129,11 @@ def intro_video(txt):
 
 
 def plot_video(txt1, txt2):
+    """
+    Plot video generation.
+
+    Creation of plot video with observation, plot, explanation, audio, and background.
+    """
     global plot_color
     plot_color = random.choice(color_list)
 
@@ -149,6 +167,11 @@ def plot_video(txt1, txt2):
 
 
 def generate_line_story(plot_text1, plot_text2, intro_text=''):
+    """
+    Creation of entire line plot story.
+
+    Creation of line plot story with 2 seperate videos (intro & data observation).
+    """
     videos, audios, duration = [], [], 0
     if intro_text:
         v1, a1, d1 = intro_video(intro_text)
