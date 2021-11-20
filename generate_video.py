@@ -14,7 +14,7 @@ HEADLINE_Y = 300
 TEXT_Y = 200
 PLOT_Y = 'center'
 PADDING_LEFT = 50
-PADDING_LEFT_PLOT = 50
+PADDING_LEFT_PLOT = 60
 FONT = 'Helvetica-Bold'
 AUDIO_BUFFER = 1
 
@@ -58,11 +58,11 @@ def make_frame_bar(t):
     """
     ax.clear()
     fig.autofmt_xdate()
-    ax.set_ylabel(y_label)
 
-    ax.bar(x, np.minimum(y * t * 4 / WAIT_UNTIL_TEXT, y), color=plot_color, width=5)
+    ax.bar(x, np.minimum(y * t * 4 / WAIT_UNTIL_TEXT, y), color=plot_color, width=0.9, label=y_label)
     ax.set_ylim(0, max(y) * 1.1)
-    
+    ax.legend(loc='upper left')
+
     return mplfig_to_npimage(fig)
 
 def move_headline(t):
