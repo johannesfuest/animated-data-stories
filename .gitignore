@@ -1,2 +1,4 @@
 __pycache__/
 dataset/sales.csv
+*.mp3
+*.mp4

@@ -131,8 +131,10 @@ def plot_video(txt1, txt2):
 def generate_line_story(intro_text, plot_text1, plot_text2, x_data, y_data):
     global x
     global y
+    global y_label
     x = x_data
     y = y_data
+    y_label = 'revenue'
     
     v1, a1, d1 = intro_video(intro_text)
     v2, a2, d2 = plot_video(plot_text1, plot_text2)
