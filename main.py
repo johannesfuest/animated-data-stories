@@ -2,6 +2,7 @@ import pandas as pd
 from reports.store_outlier import get_store_outlier_for_yesterday
 from generate_video import generate_line_story
 from reports.growth_cities import get_growth_cities
+import os
 
 YESTERDAY1 = "2018-09-17"
 YESTERDAY2 = '2019-02-28'
@@ -68,6 +69,8 @@ def main():
         vid = generate_line_story(
             'intro sentence', text1, text2, x, y, _y_label)
 
+        if not os.path.exists('videos'):
+            os.makedirs('videos')
         vid.write_videofile(f'videos/story{i}.mp4', fps=10)
         i += 1
     print("Videos generated.")
