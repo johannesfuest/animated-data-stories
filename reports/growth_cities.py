@@ -45,7 +45,7 @@ def get_growth_cities(df_sales, yesterday):
         res[growth_cities[i]
             ]["text1"] = f"City {growth_cities[i]} increased its monthly revenue by {int(growth_values[i])} percent over the past six months"
         res[growth_cities[i]
-            ]["text2"] = "We should consider expanding our presense in the city"
+            ]["text2"] = "We should consider expanding to more locations in the city"
         res[growth_cities[i]]["y_label"] = "Monthly Revenue"
         res[growth_cities[i]]["chart_type"] = 1
     return res
