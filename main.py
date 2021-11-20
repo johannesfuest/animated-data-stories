@@ -61,11 +61,13 @@ def main():
     print("Generating Videos...")
     i = 1
     intro = 'Good morning Michael, here are your Daily Insights.'
+    videos = []
     for item, item_data in data_stores.items():
         plot_type, data, text1, text2, _y_label = item_data['chart_type'], item_data['data'], item_data['text1'], item_data['text2'], item_data['y_label']
 
         x, y = data.T
         vid = generate_line_story(text1, text2, x, y, intro_text=intro, _y_label=_y_label, plot_type=plot_type)
+        videos.append(vid)
 
         if not os.path.exists('videos'):
             os.makedirs('videos')
@@ -77,6 +79,8 @@ def main():
     # upload video
     print("Start Uploading Videos")
     print("Script Done")
+
+    return videos
 
 
 if __name__ == "__main__":
