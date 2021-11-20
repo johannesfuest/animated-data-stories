@@ -40,7 +40,7 @@ def main():
 
     # generate video
     print("Start generation Videos")
-    video = generate_video(yesterday_outliers)
+    generate_video(yesterday_outliers)
 
     # upload video
     print("Start Uploading Videos")
