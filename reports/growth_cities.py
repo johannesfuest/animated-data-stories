@@ -38,6 +38,7 @@ def get_growth_cities(df_sales, yesterday):
         temp = temp[['date', 'revenue']]
         temp = temp.loc[temp.date <= pd.to_datetime(
             yesterday, format='%Y-%m-%d')]
+        temp['date'] = temp['date'].dt.strftime('%Y-%m')
         res[growth_cities[i]]["data"] = temp.to_numpy()
         res[growth_cities[i]
             ]["text1"] = f"City {growth_cities[i]} increased its monthly revenue by {int(growth_values[i])} percent over the past six months"
