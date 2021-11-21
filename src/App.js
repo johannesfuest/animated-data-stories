@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import './App.css';
 import video1 from './story1.mp4';
 import video2 from './story2.mp4';
+import video3 from './story3.mp4';
 
 import avatar from './avatar.svg';
 import left from './left.svg';
@@ -10,7 +11,7 @@ import right from './right.svg';
 import help from './help.svg';
 
 export default function App() {
-  const videos = [video1, video2]
+  const videos = [video1, video2, video3]
   const [videoIndex, setVideoindex] = useState(0)
 
   function nextVideo() {
