@@ -3,7 +3,8 @@ import { useState } from 'react';
 import './App.css';
 import video1 from './videos/story1.mp4';
 import video2 from './videos/story2.mp4';
-import video3 from './videos/story3.mp4';
+import video3 from './videos/forecast.mp4';
+import video4 from './videos/story3.mp4';
 
 import avatar from './res/avatar.svg';
 import left from './res/left.svg';
@@ -11,7 +12,7 @@ import right from './res/right.svg';
 import help from './res/help.svg';
 
 export default function App() {
-  const videos = [video1, video2, video3]
+  const videos = [video1, video2, video3, video4];
   const [videoIndex, setVideoindex] = useState(0)
 
   function nextVideo() {
