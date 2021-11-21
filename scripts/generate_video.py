@@ -7,6 +7,7 @@ import textwrap
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 
 VIDEO_WIDTH, VIDEO_HEIGHT = VIDEO_SIZE = (500, 1000)
 HEADLINE_Y = 300
@@ -43,7 +44,13 @@ def make_frame(t):
     ax.clear()
     fig.autofmt_xdate()
 
-    ax.plot_date(x, np.minimum(y * t * 4 / WAIT_UNTIL_TEXT, y), linestyle='solid', linewidth=5, marker='', color=plot_color, label=y_label)
+    for x_val, y_val in zip(x, y):
+        y_val = np.minimum(y * t * 4 / WAIT_UNTIL_TEXT, y)
+        if x_val < _threshold:
+            ax.plot_date(x_val, y_val, linestyle='solid', linewidth=5, marker='', color=plot_color, label=y_label)
+        else:
+            ax.plot_date(x_val, y_val, linestyle='solid', linewidth=5, marker='x', color='red', label=y_label)
+
     ax.set_ylim(0, max(y) * 1.1)
     ax.legend(loc='upper left')
     
@@ -179,7 +186,7 @@ def plot_video(txt1, txt2, plot_type=0):
     return video, audio, total_duration
 
 
-def generate_line_story(plot_text1, plot_text2, x_data, y_data, intro_text='', _y_label='revenue', plot_type=0):
+def generate_line_story(plot_text1, plot_text2, x_data, y_data, intro_text='', _y_label='revenue', plot_type=0, threshold=(pd.Timestamp.now() + pd.tseries.offsets.DateOffset(months=1))):
     """
     Creation of entire line plot story.
 
@@ -188,9 +195,11 @@ def generate_line_story(plot_text1, plot_text2, x_data, y_data, intro_text='', _
     global x
     global y
     global y_label
+    global _threshold
     x = x_data
     y = y_data
     y_label = _y_label
+    _threshold = threshold
 
     videos, audios, duration = [], [], 0
     if intro_text:
