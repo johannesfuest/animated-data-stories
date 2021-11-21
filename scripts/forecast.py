@@ -34,7 +34,7 @@ def forecast_store_id(df_sales):
     temp2 = ts_sales_ST04[['time', 'value']]
     frames = [temp2, temp1]
     result = pd.concat(frames)
-    result = temp1.rename(columns={"time": "date", "value": "sales"})
+    result = result.rename(columns={"time": "date", "value": "sales"})
 
     res = {}
     res[store_type_id] = {}
