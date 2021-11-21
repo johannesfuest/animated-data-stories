@@ -134,7 +134,7 @@ def intro_video(txt):
 
     total_duration = audio.duration + AUDIO_BUFFER
 
-    background = ImageClip('background.png', duration=total_duration).resize((VIDEO_WIDTH, VIDEO_HEIGHT//5))
+    background = ImageClip('assets/background.png', duration=total_duration).resize((VIDEO_WIDTH, VIDEO_HEIGHT//5))
     background = background.set_position((0, VIDEO_HEIGHT - background.h))
     video = CompositeVideoClip([background, txt_clip], size=VIDEO_SIZE).set_duration(total_duration)
                                                                                
@@ -170,7 +170,7 @@ def plot_video(txt1, txt2, plot_type=0):
 
     plot_clip = VideoClip(make_frame if plot_type == 0 else make_frame_bar, duration=total_duration).set_position(move_plot)
 
-    background = ImageClip('background.png', duration=total_duration).resize((VIDEO_WIDTH, VIDEO_HEIGHT//5))
+    background = ImageClip('assets/background.png', duration=total_duration).resize((VIDEO_WIDTH, VIDEO_HEIGHT//5))
     background = background.set_position((0, VIDEO_HEIGHT - background.h))
     
     video = CompositeVideoClip([background, txt_clip1, txt_clip2.set_start(audio1.duration), plot_clip], size=VIDEO_SIZE).set_duration(total_duration)
