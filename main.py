@@ -4,6 +4,7 @@ import pandas as pd
 
 from scripts.store_outlier import get_store_outlier_for_yesterday
 from scripts.growth_cities import get_growth_cities
+from scripts.forecast import forecast_store_id
 from scripts.generate_video import generate_line_story
 
 # Change those dates and get Insights for those.
@@ -50,15 +51,19 @@ def main():
 
     # call different outlier scripts
     print("Checking for Yesterdays Outliers...")
-    yesterday_outliers = get_store_outlier_for_yesterday(df_sales, YESTERDAY1)
-    growth_cities = get_growth_cities(df_sales, YESTERDAY2)
-    print(f"Found {len(yesterday_outliers)} store outliers.")
-    print(f"Found {len(growth_cities)} growth cities.")
+    #yesterday_outliers = get_store_outlier_for_yesterday(df_sales, YESTERDAY1)
+    #growth_cities = get_growth_cities(df_sales, YESTERDAY2)
+    forecast = forecast_store_id(df_sales)
+    #print(f"Found {len(yesterday_outliers)} store outliers.")
+    #print(f"Found {len(growth_cities)} growth cities.")
+
+    print(forecast)
 
     # do priority
     data_stores = {}
-    data_stores.update(yesterday_outliers)
-    data_stores.update(growth_cities)
+    # data_stores.update(yesterday_outliers)
+    # data_stores.update(growth_cities)
+    data_stores.update(forecast)
 
     # generate video
     print("Generating Videos...")
@@ -71,8 +76,12 @@ def main():
             'data'], item_data['text1'], item_data['text2'], item_data['y_label']
 
         x, y = data.T
-        vid = generate_line_story(
-            text1, text2, x, y, intro_text=intro, _y_label=_y_label, plot_type=plot_type)
+        if not "threshold" in item_data:
+            vid = generate_line_story(
+                text1, text2, x, y, intro_text=intro, _y_label=_y_label, plot_type=plot_type)
+        else:
+            vid = generate_line_story(
+                text1, text2, x, y, intro_text=intro, _y_label=_y_label, plot_type=plot_type, threshold=item_data['threshold'])
         videos.append(vid)
 
         if not os.path.exists('videos'):
