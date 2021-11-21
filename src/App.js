@@ -28,7 +28,7 @@ export default function App() {
   return (
     <div className="app">
       <div className="header">
-        <span>Data Stories</span>
+        <span>MorningByte</span>
         <div className="btn">
           <img className="icn" src={avatar} />
         </div>
