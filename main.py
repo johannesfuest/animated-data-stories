@@ -6,6 +6,8 @@ from scripts.store_outlier import get_store_outlier_for_yesterday
 from scripts.growth_cities import get_growth_cities
 from scripts.generate_video import generate_line_story
 
+# Change those dates and get Insights for those.
+# YESTERDAY2 is always last day of a month
 YESTERDAY1 = "2018-09-17"
 YESTERDAY2 = "2018-12-31"
 
@@ -64,16 +66,13 @@ def main():
     intro = 'Hello Micheal, here is your byte-sized morning briefing.'
     videos = []
     for item, item_data in data_stores.items():
-        # only for testing
-        if i not in [1, 2, 6]:
-            i += 1
-            continue
 
-        # only for testing
-        plot_type, data, text1, text2, _y_label = item_data['chart_type'], item_data['data'], item_data['text1'], item_data['text2'], item_data['y_label']
+        plot_type, data, text1, text2, _y_label = item_data['chart_type'], item_data[
+            'data'], item_data['text1'], item_data['text2'], item_data['y_label']
 
         x, y = data.T
-        vid = generate_line_story(text1, text2, x, y, intro_text=intro, _y_label=_y_label, plot_type=plot_type)
+        vid = generate_line_story(
+            text1, text2, x, y, intro_text=intro, _y_label=_y_label, plot_type=plot_type)
         videos.append(vid)
 
         if not os.path.exists('videos'):
@@ -89,7 +88,7 @@ def main():
 
         i += 1
         intro = False
-        
+
     print("Videos generated.")
     print("Script done.")
 
