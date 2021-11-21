@@ -63,6 +63,12 @@ def main():
     intro = 'Hello Micheal, here is your byte-sized morning briefing.'
     videos = []
     for item, item_data in data_stores.items():
+        # only for testing
+        if i not in [1, 6]:
+            i += 1
+            continue
+
+        # only for testing
         plot_type, data, text1, text2, _y_label = item_data['chart_type'], item_data[
             'data'], item_data['text1'], item_data['text2'], item_data['y_label']
 
@@ -73,7 +79,13 @@ def main():
 
         if not os.path.exists('videos'):
             os.makedirs('videos')
-        vid.write_videofile(f'videos/story{i}.mp4', fps=10)
+        vid.write_videofile(f'videos/story{i}.mp4', fps=30)
+        if os.path.exists('txt1.mp3'):
+            os.remove("txt1.mp3")
+        if os.path.exists('txt2.mp3'):
+            os.remove("txt2.mp3")
+        if os.path.exists('intro.mp3'):
+            os.remove("intro.mp3")
         i += 1
         intro = False
     print("Videos generated.")
