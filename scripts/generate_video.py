@@ -44,8 +44,8 @@ def make_frame(t):
     ax.clear()
     fig.autofmt_xdate()
 
-    for x_val, y_val in zip(x, y):
-        y_val = np.minimum(y * t * 4 / WAIT_UNTIL_TEXT, y)
+    for x_val, y_val in list(zip(x, y)):
+        y_val = np.minimum(y_val * t * 4 / WAIT_UNTIL_TEXT, y_val)
         if x_val < _threshold:
             ax.plot_date(x_val, y_val, linestyle='solid', linewidth=5, marker='', color=plot_color, label=y_label)
         else:
