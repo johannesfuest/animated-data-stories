@@ -2,11 +2,10 @@ import random
 
 from moviepy.editor import *
 from moviepy.video.io.bindings import mplfig_to_npimage
+from gtts import gTTS
 import textwrap
 import numpy as np
 import matplotlib.pyplot as plt
-from gtts import gTTS
-from pandas import Timestamp
 import seaborn as sns
 
 VIDEO_WIDTH, VIDEO_HEIGHT = VIDEO_SIZE = (500, 1000)
@@ -18,18 +17,18 @@ PADDING_LEFT_PLOT = 60
 FONT = 'Helvetica-Bold'
 AUDIO_BUFFER = 1
 
-Violet = '#970a82'
-Reddish = '#bb4a4e'
-Orange = '#d57a27'
-Yellow = '#f0ab00'
+VIOLET = '#970a82'
+REDDISH = '#bb4a4e'
+ORANGE = '#d57a27'
+YELLOW = '#f0ab00'
 
-color_list = [Violet, Reddish, Orange, Yellow]
+color_list = [VIOLET, REDDISH, ORANGE, YELLOW]
 plot_color = color_list[0]
 
 plt.style.use('dark_background')
-sns.set_context("notebook", rc={"font.size":1,
-                                "axes.titlesize":18,
-                                "axes.labelsize":18})
+sns.set_context("notebook", rc={"font.size": 1,
+                                "axes.titlesize": 18,
+                                "axes.labelsize": 18})
 plt.rcParams['axes.prop_cycle'] = plt.cycler(color=color_list)
 fig, ax = plt.subplots()
 sns.despine(right=True, top=True)
@@ -135,7 +134,7 @@ def intro_video(txt):
 
     total_duration = audio.duration + AUDIO_BUFFER
 
-    background = ImageClip('bg.png', duration=total_duration).resize((VIDEO_WIDTH, VIDEO_HEIGHT//5))
+    background = ImageClip('background.png', duration=total_duration).resize((VIDEO_WIDTH, VIDEO_HEIGHT//5))
     background = background.set_position((0, VIDEO_HEIGHT - background.h))
     video = CompositeVideoClip([background, txt_clip], size=VIDEO_SIZE).set_duration(total_duration)
                                                                                
@@ -171,7 +170,7 @@ def plot_video(txt1, txt2, plot_type=0):
 
     plot_clip = VideoClip(make_frame if plot_type == 0 else make_frame_bar, duration=total_duration).set_position(move_plot)
 
-    background = ImageClip('bg.png', duration=total_duration).resize((VIDEO_WIDTH, VIDEO_HEIGHT//5))
+    background = ImageClip('background.png', duration=total_duration).resize((VIDEO_WIDTH, VIDEO_HEIGHT//5))
     background = background.set_position((0, VIDEO_HEIGHT - background.h))
     
     video = CompositeVideoClip([background, txt_clip1, txt_clip2.set_start(audio1.duration), plot_clip], size=VIDEO_SIZE).set_duration(total_duration)

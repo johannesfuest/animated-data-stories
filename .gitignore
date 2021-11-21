@@ -4,3 +4,5 @@ dataset/sales.csv
 *.mp4
 
 node_modules/
+
+exploratory_data_analysis/.ipynb_checkpoints/
