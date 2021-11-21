@@ -64,7 +64,7 @@ def main():
     videos = []
     for item, item_data in data_stores.items():
         # only for testing
-        if i not in [1, 6]:
+        if i not in [1, 2, 6]:
             i += 1
             continue
 

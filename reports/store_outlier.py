@@ -52,7 +52,7 @@ def get_store_outlier_for_yesterday(df_sales, yesterday):
         result[store] = {}
         result[store]["chart_type"] = 0
         result[store]["data"] = temp[['date', 'revenue']].to_numpy()
-        result[store]["text1"] = f"Yesterday's daily revenue for store {store} fell below 5 % of its 14 day average."
+        result[store]["text1"] = f"Yesterday's daily revenue for store {store} fell below 5% of its 14 day average."
         result[store]["text2"] = "I suggest you check in with the responsible store manager for an explanation."
         result[store]["y_label"] = "Revenue"
     return result

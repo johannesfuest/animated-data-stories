@@ -42,10 +42,11 @@ def get_growth_cities(df_sales, yesterday):
             yesterday, format='%Y-%m-%d') - pd.DateOffset(years=1))]
         temp['date'] = temp['date'].dt.strftime('%Y-%m')
         res[growth_cities[i]]["data"] = temp.to_numpy()
+        #res[growth_cities[i]]["text1"] = f"City {growth_cities[i]} increased its monthly revenue by {int(growth_values[i])} percent over the past six months."
         res[growth_cities[i]
-            ]["text1"] = f"City {growth_cities[i]} increased its monthly revenue by {int(growth_values[i])} percent over the past six months"
+            ]["text1"] = f"The total revenue of stores in Ankara increased by {int(growth_values[i])}% over the past six months."
         res[growth_cities[i]
-            ]["text2"] = "We should consider expanding to more locations in the city"
+            ]["text2"] = "We should consider expanding to more locations in the city."
         res[growth_cities[i]]["y_label"] = "Monthly Revenue"
         res[growth_cities[i]]["chart_type"] = 1
     return res
