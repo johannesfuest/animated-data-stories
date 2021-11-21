@@ -18,7 +18,7 @@ SAP challenge [@hackatum](https://hack.tum.de) 2021.
 ## Run the demo notebook to generate stories
 ### Prerequisites
 #### Google Colab
-Open [this notebook](https://colab.research.google.com/drive/1y0k3lBn_F00UHA3SiNzIDMv5Ve6vZmpb?usp=sharing) and follow its instrusctions
+Open [this notebook](https://colab.research.google.com/drive/1y0k3lBn_F00UHA3SiNzIDMv5Ve6vZmpb?usp=sharing) and follow its instructions
 
 #### Local Setup
 1. Download the dataset from https://www.kaggle.com/berkayalan/retail-sales-data/code
