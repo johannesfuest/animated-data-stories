@@ -1,5 +1,5 @@
 # MoriningByte
-SAP challenge [@hackatum](https://hack.tum.de) 2021.
+First place of the SAP challenge [@hackaTUM 2021](https://hack.tum.de).
 [See the project in action!](https://animated-data-stories-1.herokuapp.com/)
 [Check out the project on devpost](https://devpost.com/software/animated-data-stories)
 
